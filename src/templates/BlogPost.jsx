@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { object } from 'prop-types';
 import { mediaMax } from '@divyanshu013/media';
+import kebabCase from "lodash/kebabCase"
 
 import Bio from '../components/Bio';
 import Layout from '../components/Layout';
@@ -12,11 +13,13 @@ import { rhythm } from '../utils/typography';
 import ThemeProvider from '../components/ThemeProvider';
 import ThemeContext from '../components/ThemeContext';
 import { getTheme } from '../utils/theme';
+import TagButton from '../components/TagButton';
 
 const BlogPost = ({ data, pageContext, location }) => {
 	const post = data.markdownRemark;
 	const siteTitle = data.site.siteMetadata.title;
 	const { previous, next } = pageContext;
+	const tags = data.allMarkdownRemark.group;
 
 	return (
 		<ThemeProvider>
@@ -52,6 +55,31 @@ const BlogPost = ({ data, pageContext, location }) => {
 								}}
 								dangerouslySetInnerHTML={{ __html: post.html }}
 							/>
+
+							<div
+								css={{
+									display: 'grid',
+									gridGap: 16,
+									gridTemplateColumns: 'repeat(4, auto)',
+									justifyItems: 'center',
+									justifyContent: 'start',
+									marginBottom: '12px',
+								}}
+							>	
+							{tags.map(tag => (
+								<TagButton
+									aria-label="{tag.fieldValue} ({tag.totalCount})"
+									as="a"
+									circular
+									href={`/tags/${kebabCase(tag.fieldValue)}/`}
+									target=""
+									rel="noopener noreferrer"
+								>
+									{tag.fieldValue}
+								</TagButton>
+							))}
+							</div>
+
 							<hr
 								style={{
 									borderBottom: `1px solid ${getTheme(theme).borderColor}`,
@@ -59,6 +87,7 @@ const BlogPost = ({ data, pageContext, location }) => {
 									marginBottom: rhythm(1),
 								}}
 							/>
+
 							<Bio />
 
 							<ul
@@ -124,6 +153,11 @@ export const pageQuery = graphql`
 				title
 				author
 				siteUrl
+			}
+		}
+		allMarkdownRemark(limit: 2000) {
+			group(field: frontmatter___tags) {
+			  fieldValue
 			}
 		}
 		markdownRemark(fields: { slug: { eq: $slug } }) {

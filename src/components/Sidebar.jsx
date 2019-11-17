@@ -4,8 +4,10 @@ import Image from 'gatsby-image';
 import { FiGithub, FiInstagram, FiLinkedin } from 'react-icons/fi';
 import { FaStackOverflow } from 'react-icons/fa';
 import { mediaMax } from '@divyanshu013/media';
+import kebabCase from "lodash/kebabCase"
 
 import Button from './Button';
+import TagButton from './TagButton';
 import { rhythm } from '../utils/typography';
 import { getTheme } from '../utils/theme';
 import ThemeContext from './ThemeContext';
@@ -31,11 +33,18 @@ const SIDEBAR_QUERY = graphql`
 				}
 			}
 		}
+		allMarkdownRemark(limit: 2000) {
+			group(field: frontmatter___tags) {
+			  fieldValue
+			  totalCount
+			}
+		}
 	}
 `;
 
 const Sidebar = () => {
 	const data = useStaticQuery(SIDEBAR_QUERY);
+	const tags = data.allMarkdownRemark.group;
 	const { avatar } = data;
 	const { author, bio, social } = data.site.siteMetadata;
 	const { theme } = useContext(ThemeContext);
@@ -137,6 +146,33 @@ const Sidebar = () => {
 				>
 					<FiInstagram />
 				</Button>
+			</div>
+			<p css={{
+				marginTop: '16px'
+			}}>
+				<h2>Tags</h2>
+			</p>
+			<div
+				css={{
+					display: 'grid',
+					gridGap: 16,
+					gridTemplateColumns: 'repeat(4, auto)',
+					justifyItems: 'center',
+					justifyContent: 'start',
+				}}
+			>	
+				{tags.map(tag => (
+				<TagButton
+					aria-label="{tag.fieldValue} ({tag.totalCount})"
+					as="a"
+					circular
+					href={`/tags/${kebabCase(tag.fieldValue)}/`}
+					target=""
+					rel="noopener noreferrer"
+				>
+					{tag.fieldValue} ({tag.totalCount})
+				</TagButton>
+				))}
 			</div>
 		</nav>
 	);

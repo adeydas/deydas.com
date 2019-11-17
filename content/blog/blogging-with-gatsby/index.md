@@ -2,7 +2,7 @@
 title: 'Blogging with Gatsby'
 description: 'Blogging with ReactJS based Gatsby'
 date: 2019-11-12
-categories: ['blog']
+tags: ['burnaby', 'canada']
 ogImage: ./og-image.png
 ---
 
