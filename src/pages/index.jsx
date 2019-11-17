@@ -5,6 +5,7 @@ import { mediaMax } from '@divyanshu013/media';
 
 import ThemeProvider from '../components/ThemeProvider';
 import Sidebar from '../components/Sidebar';
+import Footer from '../components/Footer';
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
 import BlogInfo from '../components/BlogInfo';
@@ -59,6 +60,19 @@ const BlogIndex = ({ data, location }) => {
 					})}
 				</Layout>
 			</section>
+			<section css={{
+					display: 'grid',
+					gridTemplateColumns: 'auto 1fr',
+					alignContent: 'start',
+					height: '100%',
+					minHeight: '1vh',
+					maxWidth: 1200,
+					margin: '0 auto',
+					[mediaMax.large]: {
+						gridTemplateColumns: 'auto',
+						justifyItems: 'center',
+					},
+				}}><Footer /></section> 
 		</ThemeProvider>
 	);
 };

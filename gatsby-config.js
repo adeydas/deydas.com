@@ -11,6 +11,7 @@ module.exports = {
 			stackoverflow: 'https://stackoverflow.com/users/1394972/abhishek-dey-das',
 			linkedin: 'https://www.linkedin.com/in/adeydas/',
 		},
+		footer: `Disclaimer: The content on this web site is the personal opinion of Abhishek Dey Das and does not reflect that of his employer or other entities. All copyrights reserved.`
 	},
 	plugins: [
 		`gatsby-plugin-emotion`,
