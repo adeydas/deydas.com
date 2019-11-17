@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Image from 'gatsby-image';
+import { FiLinkedin, FiMail, FiTwitter, FiFacebook } from 'react-icons/fi';
 
 import { mediaMax } from '@divyanshu013/media';
 import { rhythm } from '../utils/typography';
@@ -20,15 +21,19 @@ const Bio = () => {
 			site {
 				siteMetadata {
 					author
+					longDescription
 					social {
-						github
+						linkedin
+						email
+						twitter
+						facebook
 					}
 				}
 			}
 		}
 	`);
 
-	const { author, social } = data.site.siteMetadata;
+	const { author, social, longDescription } = data.site.siteMetadata;
 	const { theme } = useContext(ThemeContext);
 	const { color, secondary } = getTheme(theme);
 	return (
@@ -67,9 +72,17 @@ const Bio = () => {
 			/>
 			<div css={{ fontSize: 16, color: secondary }}>
 				<p>
-					{social.github}
+					{longDescription}
 				</p>
-				
+				<p>
+					If you'd like to chat, drop me a line:					
+				</p>
+				<p>
+					<a href={social.linkedin}><FiLinkedin /></a> &nbsp; &nbsp;
+					<a href={social.email}><FiMail /></a> &nbsp; &nbsp;
+					<a href={social.twitter}><FiTwitter /></a> &nbsp; &nbsp;
+					<a href={social.facebook}><FiFacebook /></a> &nbsp; &nbsp;
+				</p>
 			</div>
 		</div>
 	);

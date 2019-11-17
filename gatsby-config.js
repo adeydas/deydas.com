@@ -4,12 +4,16 @@ module.exports = {
 		title: `Abhishek Dey Das`,
 		author: `Abhishek Dey Das`,
 		description: `Personal blog of Abhishek Dey Das`,
+		longDescription: `I am a Software Development Engineer at Amazon Canada and love working on complex distributed systems, both organic and algorithmic. More recently I have taken an interest in React and front-end development. In my free time, I like to take photos, spend time with my family and travel.`,
 		siteUrl: `https://deydas.com`,
 		social: {
 			github: 'https://github.com/adeydas',
 			instagram: 'https://instagram.com/adeydas',
 			stackoverflow: 'https://stackoverflow.com/users/1394972/abhishek-dey-das',
 			linkedin: 'https://www.linkedin.com/in/adeydas/',
+			email: 'adeydas3@gmail.com',
+			twitter: 'https://twitter.com/adeydas',
+			facebook: 'https://www.facebook.com/adeydas',
 		},
 		footer: `Disclaimer: The content on this web site is the personal opinion of Abhishek Dey Das and does not reflect that of his employer or other entities. All copyrights reserved.`
 	},

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { object } from 'prop-types';
+import { mediaMax } from '@divyanshu013/media';
 
 import Bio from '../components/Bio';
 import Layout from '../components/Layout';
+import Footer from '../components/Footer';
 import Seo from '../components/Seo';
 import BlogInfo from '../components/BlogInfo';
 import { rhythm } from '../utils/typography';
@@ -92,6 +94,19 @@ const BlogPost = ({ data, pageContext, location }) => {
 					)}
 				</ThemeContext.Consumer>
 			</section>
+			<section css={{
+					display: 'grid',
+					gridTemplateColumns: 'auto 1fr',
+					alignContent: 'start',
+					height: '100%',
+					minHeight: '1vh',
+					maxWidth: 1200,
+					margin: '0 auto',
+					[mediaMax.large]: {
+						gridTemplateColumns: 'auto',
+						justifyItems: 'center',
+					},
+				}}><Footer /></section> 
 		</ThemeProvider>
 	);
 };
