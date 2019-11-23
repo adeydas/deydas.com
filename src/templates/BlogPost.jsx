@@ -19,7 +19,6 @@ const BlogPost = ({ data, pageContext, location }) => {
 	const post = data.markdownRemark;
 	const siteTitle = data.site.siteMetadata.title;
 	const { previous, next } = pageContext;
-	const tags = data.allMarkdownRemark.group;
 
 	return (
 		<ThemeProvider>
@@ -66,16 +65,16 @@ const BlogPost = ({ data, pageContext, location }) => {
 									marginBottom: '12px',
 								}}
 							>	
-							{tags.map(tag => (
+							{post.frontmatter.tags.map(tag => (
 								<TagButton
-									aria-label="{tag.fieldValue} ({tag.totalCount})"
+									aria-label="{tag}"
 									as="a"
 									circular
-									href={`/tags/${kebabCase(tag.fieldValue)}/`}
+									href={`/tags/${kebabCase(tag)}/`}
 									target=""
 									rel="noopener noreferrer"
 								>
-									{tag.fieldValue}
+									{tag}
 								</TagButton>
 							))}
 							</div>
@@ -155,17 +154,13 @@ export const pageQuery = graphql`
 				siteUrl
 			}
 		}
-		allMarkdownRemark(limit: 2000) {
-			group(field: frontmatter___tags) {
-			  fieldValue
-			}
-		}
 		markdownRemark(fields: { slug: { eq: $slug } }) {
 			id
 			excerpt(pruneLength: 160)
 			html
 			frontmatter {
 				title
+				tags
 				date(formatString: "MMMM DD, YYYY")
 				description
 				ogImage {
