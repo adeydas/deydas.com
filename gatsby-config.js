@@ -69,7 +69,6 @@ module.exports = {
 				display: `minimal-ui`,
 			},
 		},
-		`gatsby-plugin-offline`,
 		`gatsby-plugin-react-helmet`,
 		{
 			resolve: `gatsby-plugin-typography`,
@@ -87,6 +86,14 @@ module.exports = {
 			resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
 			options: {
 				devMode: false,
+			},
+		},
+		{
+			resolve: `gatsby-plugin-s3`,
+			options: {
+			  bucketName: "deydas.com-bucket",
+			  protocol: "https",
+        	  hostname: "deydas.com",
 			},
 		},
 	],
