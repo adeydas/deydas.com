@@ -49,12 +49,7 @@ const BlogIndex = ({ data, location }) => {
 										{title}
 									</Link>
 								</h3>
-								<p
-									css={{ marginBottom: rhythm(1.5) }}
-									dangerouslySetInnerHTML={{
-										__html: node.frontmatter.description || node.excerpt,
-									}}
-								/>
+								<p>&nbsp;</p>
 							</div>
 						);
 					})}
