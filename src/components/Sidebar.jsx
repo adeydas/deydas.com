@@ -8,6 +8,7 @@ import kebabCase from "lodash/kebabCase"
 
 import Button from './Button';
 import TagButton from './TagButton';
+import MenuButton from './MenuButton';
 import { rhythm } from '../utils/typography';
 import { getTheme } from '../utils/theme';
 import ThemeContext from './ThemeContext';
@@ -173,6 +174,41 @@ const Sidebar = () => {
 					{tag.fieldValue} ({tag.totalCount})
 				</TagButton>
 				))}
+			</div>
+			<p css={{
+				marginTop: '16px'
+			}}>
+				<h2>Side links</h2>
+			</p>
+			<div
+				css={{
+					display: 'grid',
+					gridGap: 16,
+					gridTemplateColumns: 'repeat(4, auto)',
+					justifyItems: 'center',
+					justifyContent: 'start',
+				}}
+			>	
+				<MenuButton
+					aria-label="blog-source-code"
+					as="a"
+					circular
+					href={`https://github.com/adeydas/deydas.com`}
+					target=""
+					rel="noopener noreferrer"
+				>
+					Blog source code
+				</MenuButton>
+				<MenuButton
+					aria-label="blog-infra-code"
+					as="a"
+					circular
+					href={`https://github.com/adeydas/deydas.com-Infrastructure`}
+					target=""
+					rel="noopener noreferrer"
+				>
+					Blog infrastructure code
+				</MenuButton>
 			</div>
 		</nav>
 	);
